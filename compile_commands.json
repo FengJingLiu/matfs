@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-O0",
+      "-g3",
+      "-ggdb",
+      "-o",
+      "matfs",
+      "matfs.c",
+      "-I/usr/src/linux-headers-6.2.0-37-generic/include",
+      "-I/usr/src/linux-headers-6.2.0-37-generic/arch/x86/include"
+    ],
+    "directory": "/home/autumn/study/zero-vioce-store/matfs",
+    "file": "/home/autumn/study/zero-vioce-store/matfs/matfs.c",
+    "output": "/home/autumn/study/zero-vioce-store/matfs/matfs"
+  }
+]

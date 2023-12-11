@@ -1,1 +1,9 @@
-*.img
+*
+!*/
+!.gitignore
+!Makefile
+!*.c
+!*.h
+!*.gdb
+!*.py
+!*.json
