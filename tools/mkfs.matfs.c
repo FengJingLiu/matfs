@@ -15,14 +15,14 @@ oper_posix(const char* filename)
         return 1;
     }
 
-    char* buffer = malloc(4096 * 1024);
+    char* buffer = malloc(4096);
     if (!buffer) {
         goto release;
         perror("malloc");
         return 1;
     }
 
-    memset(buffer, 0, 4096 * 1024);
+    memset(buffer, 0, 4096);
 
 #if 0
     strcpy(buffer, "QWERTYUIOPASDFGHJKLZXCVBNM");
@@ -45,19 +45,15 @@ oper_posix(const char* filename)
     }
     memset(buffer, 0, 4096);
 #endif
-    int ret = read(fd, buffer, 4096 * 1024);
+    int ret = read(fd, buffer, 4096);
     if (ret < 0) {
         perror("read");
         goto release;
         return 1;
     }
 
-    for (int i = 0; i < 4096 * 1024; ++i) {
-        if (i % 128 == 0) {
-            printf("\n%c", buffer[i]);
-        } else {
-            printf("%c", buffer[i]);
-        }
+    for (int i = 0; i < 4096; i += 128) {
+        printf("[%d] ----> %s\n", i/128, buffer + i);
     }
 
 release:
@@ -83,12 +79,12 @@ oper_nvme(const char* filename)
     }
 
     memset(buffer, 0, 4096);
-    strcpy(buffer, "0QWERTYUIOPASDFGHJKLZXCVBNM");
+    strcpy(buffer, "2QWERTYUIOPASDFGHJKLZXCVBNM");
 
     struct nvme_user_io io;
     memset(&io, 0, sizeof(struct nvme_user_io));
     io.addr    = (__u64)buffer;
-    io.slba    = 0;
+    io.slba    = 2;
     io.nblocks = 1;
     io.opcode  = 1;
 
@@ -126,3 +122,15 @@ main(int argc, char* argv[])
     oper_posix(filename);
     // oper_nvme(filename);
 }
+
+/* nblock = 0
+[0] ----> 0QWERTYUIOPASDFGHJKLZXCVBNM
+[1] ----> 
+[2] ----> 
+[3] ----> 
+[4] ----> 1QWERTYUIOPASDFGHJKLZXCVBNM
+[5] ----> 
+[6] ----> 
+[7] ----> 
+[8] ----> 2QWERTYUIOPASDFGHJKLZXCVBNM
+*/
