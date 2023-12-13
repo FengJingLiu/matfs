@@ -1,4 +1,4 @@
-obj-m += matfs_nvme.o
+obj-m += matfs_nvme_kernel.o
 # CFLAGS = -O0 -g3 -ggdb 
 
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build

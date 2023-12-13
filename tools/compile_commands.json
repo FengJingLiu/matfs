@@ -1,18 +1,6 @@
 [
   {
     "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-o",
-      "mkfs.matfs",
-      "mkfs.matfs.c"
-    ],
-    "directory": "/home/autumn/study/matfs",
-    "file": "/home/autumn/study/matfs/mkfs.matfs.c",
-    "output": "/home/autumn/study/matfs/mkfs.matfs"
-  },
-  {
-    "arguments": [
       "/usr/bin/gcc-11",
       "-Wp,-MMD,/home/autumn/study/matfs/tools/.matfs_nvme_kernel.o.d",
       "-nostdinc",
